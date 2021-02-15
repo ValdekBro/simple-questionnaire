@@ -1,3 +1,3 @@
-// import { AppClientsModule } from "./clients/app-clients.module"
+import { WebQuestionnairesModule } from "./questionnaires/web-questionnaires.module"
 
-export const APP_MODULES = []
+export const WEB_MODULES = [WebQuestionnairesModule]

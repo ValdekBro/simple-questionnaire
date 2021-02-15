@@ -36,7 +36,7 @@
 		"@nestjs/jwt": "^7.0.0",
 		"@nestjs/passport": "^7.0.0",
 		"@nestjs/platform-express": "^7.2.0",
-		"@nestjs/swagger": "^4.5.10",
+		"@nestjs/swagger": "^4.7.13",
 		"@nestjs/typeorm": "^7.1.0",
 		"aes256": "^1.0.4",
 		"axios-es6-class": "^4.1.1",
@@ -57,7 +57,7 @@
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^3.0.2",
 		"rxjs": "^6.5.5",
-		"swagger-ui-express": "^4.1.4",
+		"swagger-ui-express": "^4.1.6",
 		"typeorm": "^0.2.28",
 		"typeorm-transactional-cls-hooked": "^0.1.12"
 	},

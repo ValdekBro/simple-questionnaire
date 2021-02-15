@@ -26,16 +26,19 @@ export abstract class ExtendedRepository<E> extends Repository<E> {
 
     async getManyAndPaginate(
         oldQuery: SelectQueryBuilder<E>,
-        pagination: IPagination
+        pagination?: IPagination
     ): Promise<IPaginationList<E>> {
-        let query = oldQuery.skip(pagination.skip).take(pagination.limit)
+        let query = oldQuery
+        if (pagination) {
+            if (pagination.skip) query = query.skip(pagination.skip)
+            if (pagination.limit) query = query.take(pagination.limit)
 
-        if (pagination.sortField) {
-            const sort: "ASC" | "DESC" =
-                pagination.sort === "ASC" ? "ASC" : "DESC"
-            query = query.orderBy(pagination.sortField, sort)
+            if (pagination.sortField) {
+                const sort: "ASC" | "DESC" =
+                    pagination.sort === "ASC" ? "ASC" : "DESC"
+                query = query.orderBy(pagination.sortField, sort)
+            }
         }
-
         const [items, count] = await query.getManyAndCount()
         return { count, items }
     }

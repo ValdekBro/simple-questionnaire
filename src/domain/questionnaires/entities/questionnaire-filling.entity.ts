@@ -11,7 +11,7 @@ import {
 import { QuestionAnswer } from "./question-answer.entity"
 import { Questionnaire } from "./questionnaire.entity"
 
-@Entity("questionnaires")
+@Entity("questionnaires-fillings")
 export class QuestionnaireFilling implements IQuestionnaireFilling {
     @PrimaryGeneratedColumn("uuid")
     id: string

@@ -1,11 +1,14 @@
-import { Injectable } from "@nestjs/common"
+import { Inject, Injectable } from "@nestjs/common"
 import {
     IPagination,
     IPaginationList,
     IQuestion,
     IQuestionnaire,
+    IQuestionnaireFilling,
     IQuestionnairesDomainService
 } from "src/core"
+import { ExtendedRepository } from "src/core/abstracts"
+import { IQuestionaireFillingStorePayload } from "src/core/interfaces/params/questinnaires-fillings/questionaire-filling-store-payload.interface"
 import { IQuestionaireStorePayload } from "src/core/interfaces/params/questionaries/questionaire-store-payload.interface"
 import { DeepPartial } from "typeorm"
 import { QuestionnairesRepository, QuestionsRepository } from "../repositories"
@@ -56,7 +59,7 @@ export class QuestionnairesService implements IQuestionnairesDomainService {
     }
 
     public async getMany(
-        pagination: IPagination
+        pagination?: IPagination
     ): Promise<IPaginationList<IQuestionnaire>> {
         const qiestionairesQuery = this.questionnairesRepository
             .createQueryBuilder("questionaries")
@@ -71,5 +74,23 @@ export class QuestionnairesService implements IQuestionnairesDomainService {
 
     public async statistics(): Promise<unknown> {
         return null
+    }
+
+    async storeAnswer(
+        payload: IQuestionaireFillingStorePayload
+    ): Promise<IQuestionnaireFilling> {
+        return this.questionnairesFillingsService.store(payload)
+    }
+
+    async getAnswers(
+        questionnaireId: string,
+        pagination?: IPagination
+    ): Promise<IPaginationList<IQuestionnaireFilling>> {
+        return this.questionnairesFillingsService.getMany(
+            {
+                questionnaireId
+            },
+            pagination
+        )
     }
 }

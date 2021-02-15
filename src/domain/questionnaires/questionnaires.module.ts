@@ -1,5 +1,9 @@
 import { Global, Module } from "@nestjs/common"
-import { provideClass, QUESTIONNAIRES_DOMAIN_SERVICE } from "src/core"
+import {
+    provideClass,
+    provideCustomRepository,
+    QUESTIONNAIRES_DOMAIN_SERVICE
+} from "src/core"
 import {
     QuestionnairesFillingsRepository,
     QuestionnairesRepository,
@@ -17,10 +21,19 @@ import {
         QuestionnairesService,
         QuestionnairesFillingsService,
 
-        QuestionnairesFillingsRepository,
-        QuestionsRepository,
-        QuestionsAnswersRepository,
-        QuestionnairesRepository,
+        provideCustomRepository(
+            "QuestionnairesRepository",
+            QuestionnairesRepository
+        ),
+        provideCustomRepository(
+            "QuestionnairesFillingsRepository",
+            QuestionnairesFillingsRepository
+        ),
+        provideCustomRepository("QuestionsRepository", QuestionsRepository),
+        provideCustomRepository(
+            "QuestionsAnswersRepository",
+            QuestionsAnswersRepository
+        ),
 
         provideClass(QUESTIONNAIRES_DOMAIN_SERVICE, QuestionnairesService)
     ],

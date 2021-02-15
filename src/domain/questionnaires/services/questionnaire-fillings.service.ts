@@ -46,7 +46,7 @@ export class QuestionnairesFillingsService {
 
     async getMany(
         params: IQuestionairesFillingsListParams,
-        pagination: IPagination
+        pagination?: IPagination
     ): Promise<IPaginationList<IQuestionnaireFilling>> {
         const fillingsQuery = this.questionnairesFillingsRepository
             .createQueryBuilder("fillings")
@@ -54,8 +54,8 @@ export class QuestionnairesFillingsService {
 
         if (params && params.questionnaireId)
             fillingsQuery.andWhere(
-                "fillings.questinnaireId = :questinnaireId",
-                { questinnaireId: params.questionnaireId }
+                "fillings.questionnaireId = :questionnaireId",
+                { questionnaireId: params.questionnaireId }
             )
 
         const questionnairesFillings = await this.questionnairesFillingsRepository.getManyAndPaginate(

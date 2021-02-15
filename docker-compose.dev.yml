@@ -14,7 +14,7 @@ services:
       - db-postgres
     links:
       - db-postgres
-    command: npm run start
+    command: npm run start:dev
     
   db-postgres:
     image: postgres:11

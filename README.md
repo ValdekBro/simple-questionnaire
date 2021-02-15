@@ -59,6 +59,9 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+## AUTH
+
+put AUTH_SECRET key from env properties to 'auth-secret' header
 
 ## Support
 

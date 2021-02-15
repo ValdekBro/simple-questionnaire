@@ -7,7 +7,7 @@ export interface IQuestionnairesDomainService {
 
     getOne(qiestionaireId: string): Promise<IQuestionnaire>
 
-    getAll(pagination: IPagination): Promise<IPaginationList<IQuestionnaire>>
+    getMany(pagination: IPagination): Promise<IPaginationList<IQuestionnaire>>
 
     // FIXME: unknown
     statistics(): Promise<unknown>

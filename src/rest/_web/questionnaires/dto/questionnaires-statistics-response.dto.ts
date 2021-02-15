@@ -1,7 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { Type } from "class-transformer"
-import { IQuestionaireStatistics } from "src/core/interfaces/params/questionaries/questionaires-statistics.interface"
-
+import { IQuestionaireStatistics } from "src/core"
 class AnswersCount {
     @ApiProperty()
     questionnaireId: string

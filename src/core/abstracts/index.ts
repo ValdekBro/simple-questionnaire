@@ -1,1 +1,1 @@
-export * from "./extended-repository.abstract"
+export * from './extended-repository.abstract';

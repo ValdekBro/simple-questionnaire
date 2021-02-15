@@ -1,22 +1,26 @@
 import { Body, Controller, Get, Param, Post } from "@nestjs/common"
 import { ApiTags } from "@nestjs/swagger"
-import { IPagination } from "src/core"
-import { ReqPagination } from "src/core/decorators"
-import { DocAcceptsBody } from "src/core/decorators/accepts-body.decorator"
-import { DocPagination } from "src/core/decorators/api-pagination-query.decorator"
-import { Guard } from "src/core/decorators/guards.decorator"
-import { DocSuccess } from "src/core/decorators/success.decorator"
-import { TransformResult } from "src/core/decorators/transformResult.decorator"
-import { CreateQuestionnaireDto } from "../dto"
-import { CreateQuestionnaireAnswerResponseDto } from "../dto/create-questionnaire-answer-response.dto"
-import { CreateQuestionnaireAnswerDto } from "../dto/create-questionnaire-answer.dto"
-import { CreateQuestionnaireResponseDto } from "../dto/create-questionnaire-response.dto"
-import { QuestionnaireResponseDto } from "../dto/get-questionnaire-response.dto"
-import { QuestionnairesAnswersListResponseDto } from "../dto/questionnaires-answers-list-response.dto"
-import { QuestionnairesListResponseDto } from "../dto/questionnaires-list-response.dto"
-import { QuestionnairesStatisticsResponseDto } from "../dto/questionnaires-statistics-response.dto"
+import {
+    DocAcceptsBody,
+    DocPagination,
+    DocSuccess,
+    Guard,
+    IPagination,
+    ReqPagination,
+    TransformResult
+} from "src/core"
+import {
+    CreateQuestionnaireAnswerDto,
+    CreateQuestionnaireAnswerResponseDto,
+    CreateQuestionnaireDto,
+    CreateQuestionnaireResponseDto,
+    QuestionnaireResponseDto,
+    QuestionnairesAnswersListResponseDto,
+    QuestionnairesListResponseDto,
+    QuestionnairesStatisticsResponseDto
+} from "../dto"
 import { SecretKeyGuard } from "../guards"
-import { WebQuestionnairesService } from "../services/web-questionnaires.service"
+import { WebQuestionnairesService } from "../services"
 
 @ApiTags("Web | Questionnaires")
 @Controller("web/questionnaires")

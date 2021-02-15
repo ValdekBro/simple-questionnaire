@@ -1,8 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { Exclude, Type } from "class-transformer"
-import { QuestionAnswerDto } from "src/core/dto/question-answer.dto"
-import { QuestionnaireFillingDto } from "src/core/dto/questionnaire-filling.dto"
-
+import { QuestionAnswerDto, QuestionnaireFillingDto } from "src/core"
 class QuestionnairesQuestionAnswerDto implements QuestionAnswerDto {
     @Exclude()
     id: string

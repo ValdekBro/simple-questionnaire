@@ -1,2 +1,2 @@
-export * from './questionnaire-fillings.service';
-export * from './questionnaires.service';
+export * from "./questionnaire-fillings.service"
+export * from "./questionnaires.service"

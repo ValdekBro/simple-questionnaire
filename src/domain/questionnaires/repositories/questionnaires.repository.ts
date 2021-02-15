@@ -1,6 +1,6 @@
-import { ExtendedRepository } from "src/core/abstracts"
 import { EntityRepository } from "typeorm"
-import { Questionnaire } from "../entities/questionnaire.entity"
+import { ExtendedRepository } from "src/core"
+import { Questionnaire } from "../entities"
 
 @EntityRepository(Questionnaire)
 export class QuestionnairesRepository extends ExtendedRepository<

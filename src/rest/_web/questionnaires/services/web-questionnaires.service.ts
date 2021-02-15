@@ -2,15 +2,14 @@ import { Inject, Injectable } from "@nestjs/common"
 import {
     IPagination,
     IPaginationList,
+    IQuestionaireFillingStorePayload,
+    IQuestionaireStatistics,
+    IQuestionaireStorePayload,
     IQuestionnaire,
     IQuestionnaireFilling,
     IQuestionnairesDomainService,
     QUESTIONNAIRES_DOMAIN_SERVICE
 } from "src/core"
-import { IQuestionaireFillingStorePayload } from "src/core/interfaces/params/questinnaires-fillings/questionaire-filling-store-payload.interface"
-import { IQuestionaireStorePayload } from "src/core/interfaces/params/questionaries/questionaire-store-payload.interface"
-import { IQuestionaireStatistics } from "src/core/interfaces/params/questionaries/questionaires-statistics.interface"
-
 @Injectable()
 export class WebQuestionnairesService {
     constructor(

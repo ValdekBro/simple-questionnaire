@@ -1,4 +1,4 @@
-import { IQuestionnaireFilling } from "src/core/interfaces/entities/questionnaire-filling.interfaces"
+import { IQuestionnaireFilling } from "src/core"
 import {
     Column,
     CreateDateColumn,

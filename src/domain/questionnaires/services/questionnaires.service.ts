@@ -3,13 +3,13 @@ import {
     IPagination,
     IPaginationList,
     IQuestion,
+    IQuestionaireFillingStorePayload,
+    IQuestionaireStatistics,
+    IQuestionaireStorePayload,
     IQuestionnaire,
     IQuestionnaireFilling,
     IQuestionnairesDomainService
 } from "src/core"
-import { IQuestionaireFillingStorePayload } from "src/core/interfaces/params/questinnaires-fillings/questionaire-filling-store-payload.interface"
-import { IQuestionaireStorePayload } from "src/core/interfaces/params/questionaries/questionaire-store-payload.interface"
-import { IQuestionaireStatistics } from "src/core/interfaces/params/questionaries/questionaires-statistics.interface"
 import { DeepPartial } from "typeorm"
 import {
     QuestionnairesFillingsRepository,

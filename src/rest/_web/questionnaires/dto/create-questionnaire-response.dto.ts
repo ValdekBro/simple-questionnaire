@@ -1,7 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { Exclude, Type } from "class-transformer"
-import { QuestionnaireDto } from "src/core"
-import { QuestionDto } from "src/core/dto/question.dto"
+import { QuestionDto, QuestionnaireDto } from "src/core"
 
 export class CreateQuestionResponseDto implements QuestionDto {
     @ApiProperty()

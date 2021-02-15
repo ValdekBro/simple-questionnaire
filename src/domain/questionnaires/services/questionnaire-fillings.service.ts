@@ -2,14 +2,16 @@ import { Injectable } from "@nestjs/common"
 import {
     IPagination,
     IPaginationList,
+    IQuestionaireFillingStorePayload,
+    IQuestionairesFillingsListParams,
     IQuestionAnswer,
     IQuestionnaireFilling
 } from "src/core"
-import { IQuestionaireFillingStorePayload } from "src/core/interfaces/params/questinnaires-fillings/questionaire-filling-store-payload.interface"
-import { IQuestionairesFillingsListParams } from "src/core/interfaces/params/questinnaires-fillings/questionaires-fillings-list-params.interface"
 import { DeepPartial } from "typeorm"
-import { QuestionsAnswersRepository } from "../repositories"
-import { QuestionnairesFillingsRepository } from "../repositories/questionnaires-fillings.repository"
+import {
+    QuestionnairesFillingsRepository,
+    QuestionsAnswersRepository
+} from "../repositories"
 
 @Injectable()
 export class QuestionnairesFillingsService {

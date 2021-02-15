@@ -9,6 +9,7 @@ import {
 } from "src/core"
 import { IQuestionaireFillingStorePayload } from "src/core/interfaces/params/questinnaires-fillings/questionaire-filling-store-payload.interface"
 import { IQuestionaireStorePayload } from "src/core/interfaces/params/questionaries/questionaire-store-payload.interface"
+import { IQuestionaireStatistics } from "src/core/interfaces/params/questionaries/questionaires-statistics.interface"
 
 @Injectable()
 export class WebQuestionnairesService {
@@ -31,9 +32,8 @@ export class WebQuestionnairesService {
         return this.questionnairesService.getMany(pagination)
     }
 
-    // FIXME: unknown
-    async statistics(): Promise<unknown> {
-        return this.questionnairesService.statistics()
+    async getStatistics(): Promise<IQuestionaireStatistics> {
+        return this.questionnairesService.getStatistics()
     }
 
     async storeAnswer(

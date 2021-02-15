@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common"
+import { Injectable } from "@nestjs/common"
 import {
     IPagination,
     IPaginationList,
@@ -7,11 +7,15 @@ import {
     IQuestionnaireFilling,
     IQuestionnairesDomainService
 } from "src/core"
-import { ExtendedRepository } from "src/core/abstracts"
 import { IQuestionaireFillingStorePayload } from "src/core/interfaces/params/questinnaires-fillings/questionaire-filling-store-payload.interface"
 import { IQuestionaireStorePayload } from "src/core/interfaces/params/questionaries/questionaire-store-payload.interface"
+import { IQuestionaireStatistics } from "src/core/interfaces/params/questionaries/questionaires-statistics.interface"
 import { DeepPartial } from "typeorm"
-import { QuestionnairesRepository, QuestionsRepository } from "../repositories"
+import {
+    QuestionnairesFillingsRepository,
+    QuestionnairesRepository,
+    QuestionsRepository
+} from "../repositories"
 import { QuestionnairesFillingsService } from "./questionnaire-fillings.service"
 
 @Injectable()
@@ -19,6 +23,7 @@ export class QuestionnairesService implements IQuestionnairesDomainService {
     constructor(
         private readonly questionnairesRepository: QuestionnairesRepository,
         private readonly questionsRepository: QuestionsRepository,
+        private readonly questionnairesFillingsRepository: QuestionnairesFillingsRepository,
 
         private readonly questionnairesFillingsService: QuestionnairesFillingsService
     ) {}
@@ -72,8 +77,33 @@ export class QuestionnairesService implements IQuestionnairesDomainService {
         return qiestionaires
     }
 
-    public async statistics(): Promise<unknown> {
-        return null
+    public async getStatistics(): Promise<IQuestionaireStatistics> {
+        const answersCountRaw: Array<{
+            questionnaireId: string
+            count: string
+        }> = await this.questionnairesFillingsRepository
+            .createQueryBuilder("fillings")
+            .select("COUNT(fillings.questionnaireId)", "count")
+            .addSelect("fillings.questionnaireId", "questionnaireId")
+            .groupBy("fillings.questionnaireId")
+            .getRawMany()
+
+        const answersCount = answersCountRaw.map(item => ({
+            questionnaireId: item.questionnaireId,
+            count: parseInt(item.count, 10)
+        }))
+
+        const questionnairesWithAnswersCount = answersCount.reduce(
+            (count, current) => count + Number(current.count > 0),
+            0
+        )
+
+        return {
+            answersCount,
+            questionnairesWithAnswersCount: questionnairesWithAnswersCount,
+            questionnairesWithoutAnswersCount:
+                answersCount.length - questionnairesWithAnswersCount
+        }
     }
 
     async storeAnswer(

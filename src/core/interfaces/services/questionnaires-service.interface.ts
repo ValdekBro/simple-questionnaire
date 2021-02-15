@@ -1,6 +1,7 @@
 import { IQuestionnaire, IQuestionnaireFilling } from "../entities"
 import { IQuestionaireFillingStorePayload } from "../params/questinnaires-fillings/questionaire-filling-store-payload.interface"
 import { IQuestionaireStorePayload } from "../params/questionaries/questionaire-store-payload.interface"
+import { IQuestionaireStatistics } from "../params/questionaries/questionaires-statistics.interface"
 import { IPagination, IPaginationList } from "../systems"
 
 export interface IQuestionnairesDomainService {
@@ -10,8 +11,7 @@ export interface IQuestionnairesDomainService {
 
     getMany(pagination?: IPagination): Promise<IPaginationList<IQuestionnaire>>
 
-    // FIXME: unknown
-    statistics(): Promise<unknown>
+    getStatistics(): Promise<IQuestionaireStatistics>
 
     storeAnswer(
         payload: IQuestionaireFillingStorePayload

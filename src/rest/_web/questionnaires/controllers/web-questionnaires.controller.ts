@@ -14,6 +14,7 @@ import { CreateQuestionnaireResponseDto } from "../dto/create-questionnaire-resp
 import { QuestionnaireResponseDto } from "../dto/get-questionnaire-response.dto"
 import { QuestionnairesAnswersListResponseDto } from "../dto/questionnaires-answers-list-response.dto"
 import { QuestionnairesListResponseDto } from "../dto/questionnaires-list-response.dto"
+import { QuestionnairesStatisticsResponseDto } from "../dto/questionnaires-statistics-response.dto"
 import { SecretKeyGuard } from "../guards"
 import { WebQuestionnairesService } from "../services/web-questionnaires.service"
 
@@ -62,8 +63,17 @@ export class WebQuestionnairesController {
 
     /**
      * Get questionnaires statistics
-     * TODO:
      */
+    @Get("/statistics")
+    @Guard(SecretKeyGuard)
+    @DocSuccess(
+        "Questionnaires statistic fetched successfully",
+        QuestionnairesStatisticsResponseDto
+    )
+    @TransformResult(QuestionnairesStatisticsResponseDto)
+    async getStatistics(): Promise<QuestionnairesStatisticsResponseDto> {
+        return this.questionnairesService.getStatistics()
+    }
 
     /**
      * Get questionnaire

@@ -1,0 +1,113 @@
+{
+	"name": "backend-metu",
+	"version": "0.0.1",
+	"description": "",
+	"author": "",
+	"license": "MIT",
+	"scripts": {
+		"commit": "npx git-cz",
+		"prebuild": "rimraf dist",
+		"rebuild:prod": "git pull origin master && npm run build:prod && docker-compose -f docker-compose.stage.yml restart",
+		"build": "nest build --watch --webpack",
+		"build:prod": "nest build",
+		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+		"start": "pm2-runtime process.json",
+		"start:production": "NODE_ENV=production pm2-runtime process.json",
+		"start:dev": "nest start --watch",
+		"seed": "ts-node -r tsconfig-paths/register src/shared/seeder/seed.ts",
+		"migrations:up": "ts-node -r tsconfig-paths/register src/database/migrationsUp.ts",
+		"migrations:down": "ts-node -r tsconfig-paths/register src/database/migrationsDown.ts",
+		"migrations:up:prod": "NODE_ENV=production ts-node -r tsconfig-paths/register src/database/migrationsUp.ts",
+		"migrations:down:prod": "NODE_ENV=production ts-node -r tsconfig-paths/register src/database/migrationsDown.ts",
+		"start:debug": "nest start --debug --watch",
+		"start:prod": "pm2-runtime process.json",
+		"lint": "tslint -p tsconfig.json -c tslint.json",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:cov": "jest --coverage",
+		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+		"test:e2e": "jest --config ./test/jest-e2e.json",
+		"typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./src/ormconfig.ts"
+	},
+	"dependencies": {
+		"@commitlint/config-conventional": "^9.1.2",
+		"@nestjs/common": "^7.2.0",
+		"@nestjs/core": "^7.2.0",
+		"@nestjs/jwt": "^7.0.0",
+		"@nestjs/passport": "^7.0.0",
+		"@nestjs/platform-express": "^7.2.0",
+		"@nestjs/swagger": "^4.5.10",
+		"@nestjs/typeorm": "^7.1.0",
+		"aes256": "^1.0.4",
+		"axios-es6-class": "^4.1.1",
+		"bcrypt": "^5.0.0",
+		"body-parser": "^1.19.0",
+		"class-transformer": "^0.2.3",
+		"class-validator": "^0.12.2",
+		"commitizen": "^4.2.1",
+		"cyrillic-to-translit-js": "^3.1.0",
+		"cz-customizable": "^6.3.0",
+		"moment": "^2.27.0",
+		"moment-timezone": "^0.5.31",
+		"passport": "^0.4.1",
+		"passport-jwt": "^4.0.0",
+		"passport-local": "^1.0.0",
+		"pg": "^8.2.1",
+		"randomstring": "^1.1.5",
+		"reflect-metadata": "^0.1.13",
+		"rimraf": "^3.0.2",
+		"rxjs": "^6.5.5",
+		"swagger-ui-express": "^4.1.4",
+		"typeorm": "^0.2.28",
+		"typeorm-transactional-cls-hooked": "^0.1.12"
+	},
+	"devDependencies": {
+		"@nestjs/cli": "^6.9.0",
+		"@nestjs/schematics": "^6.7.0",
+		"@nestjs/testing": "^6.11.11",
+		"@types/dotenv": "^8.2.0",
+		"@types/express": "^4.17.1",
+		"@types/jest": "^24.0.18",
+		"@types/minio": "^7.0.3",
+		"@types/node": "^12.7.5",
+		"@types/passport-jwt": "^3.0.2",
+		"@types/passport-local": "^1.0.33",
+		"@types/socket.io": "^2.1.4",
+		"@types/supertest": "^2.0.8",
+		"@typescript-eslint/eslint-plugin": "^4.15.0",
+		"@typescript-eslint/parser": "^4.15.0",
+		"eslint": "^7.20.0",
+		"jest": "^24.9.0",
+		"prettier": "^1.18.2",
+		"supertest": "^4.0.2",
+		"ts-jest": "^24.1.0",
+		"ts-loader": "^6.1.1",
+		"ts-node": "^8.4.1",
+		"tsconfig-paths": "^3.9.0",
+		"tslint": "^5.20.0",
+		"typescript": "^3.6.3",
+		"webpack-node-externals": "^1.7.2"
+	},
+	"config": {
+		"commitizen": {
+			"path": "node_modules/cz-customizable"
+		},
+		"cz-customizable": {
+			"config": "./config/git/commitizen.js"
+		}
+	},
+	"jest": {
+		"moduleFileExtensions": [
+			"js",
+			"json",
+			"ts"
+		],
+		"rootDir": "src",
+		"testRegex": ".spec.ts$",
+		"transform": {
+			"^.+\\.(t|j)s$": "ts-jest"
+		},
+		"coverageDirectory": "./coverage",
+		"testEnvironment": "node"
+	}
+}
